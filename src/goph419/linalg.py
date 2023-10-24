@@ -48,8 +48,10 @@ def solve(a, b):
         for j in range(k+1, m):
             aug[j, k+1:] -= aug[j, k] * aug[k, k+1:]
     # perform backward substitution
-    for k in range(-1, -(m+1), -1):
-        aug[k, -1] = (aug[k, -1]
-                      - np.dot(aug[k, k+1:m], aug[k+1:, -1])) / aug[k, k]
+    for k in range(m-1, -1, -1):
+        aug[k, -1] = ((aug[k, -1]
+                      - np.dot(aug[k, k+1:m],
+                               aug[k+1:, -1]))
+                      / aug[k, k])
     # return the solution
     return aug[:, -1]
