@@ -15,18 +15,16 @@ def binary_int(value, bits=32, signed=True):
     str
         A string with a binary representation of the input
     """
-    # check that both value and bits are convertible to int
-    value = int(value)
     bits = int(bits)
     # make sure that bits has a sensible value
     if bits < 1:
-        raise ValueError(f"{bits} is an invalid number of bits, "
-                         + "should be a positive integer")
+        raise ValueError(
+            f"{bits} is an invalid number of bits, should be a positive integer"
+        )
+    value = int(value)
     # get the sign bit if it is a signed integer
     if signed:
-        int_str = "0 "
-        if value < 0:
-            int_str = "1 "
+        int_str = "1 " if value < 0 else "0 "
         bits -= 1
     else:
         int_str = ""
@@ -60,10 +58,7 @@ def binary_float(value):
     """
     # test that the provided value is convertible to float
     value = float(value)
-    # get the sign information
-    sgn_str = "0"
-    if value < 0:
-        sgn_str = "1"
+    sgn_str = "1" if value < 0 else "0"
     sig = abs(value)
     # normalize the signficand, determine the exponent
     exp = 0
