@@ -41,6 +41,15 @@ def solve(a, b):
     aug = np.hstack([a, np.reshape(b, (m, 1))])
     # solve by the GE algorithm
     for k in range(m):
+        # perform partial pivoting
+        piv = np.abs(aug[k, k])
+        kpiv = k
+        for k1 in range(k+1, m):
+            piv1 = np.abs(aug[k1, k])
+            if piv1 > piv:
+                kpiv = k1
+                piv = piv1
+        aug[k, :], aug[kpiv, :] = np.array(aug[kpiv, :]), np.array(aug[k, :])
         # calculate elimination coefficients
         # slice = start(:stop(:step))
         aug[k+1:, k] /= aug[k, k]

@@ -27,6 +27,25 @@ def main():
     print(f"x419.shape = {x419.shape}")
     print(x419)
 
+    Ap = np.array(
+        [
+            [0, -10, 0],
+            [-10, 2, -15],
+            [0, -15, 15],
+        ],
+        dtype=float,
+    )
+    print(f"Ap.shape = {Ap.shape}")
+    print(Ap)
+
+    xp = np.linalg.solve(Ap, b)
+    print(f"xp.shape = {xp.shape}")
+    print(xp)
+
+    xp419 = linalg.solve(Ap, b)
+    print(f"xp419.shape = {xp419.shape}")
+    print(xp419)
+
 
 if __name__ == "__main__":
     main()
